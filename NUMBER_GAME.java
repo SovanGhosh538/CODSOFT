@@ -13,7 +13,7 @@ public class NUMBER_GAME {
 
             System.out.println("Guess number between 1 and 100:");
 
-            while (tries < 7) {
+            while (tries < 10) {
                 int g = s.nextInt();
                 tries++;
                 if (g == n) {
@@ -25,9 +25,11 @@ public class NUMBER_GAME {
                 } else {
                     System.out.println("Too high.");
                 }
+                int remaining = 10 - tries;
+                System.out.println("You have " + remaining + " tries remaining");
             }
 
-            if (tries == 7) {
+            if (tries == 10) {
                 System.out.println("Out of tries. It was: " + n);
             }
 
