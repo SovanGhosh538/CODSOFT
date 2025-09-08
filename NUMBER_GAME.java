@@ -11,9 +11,20 @@ public class NUMBER_GAME {
             int n = r.nextInt(100) + 1;
             int tries = 0;
 
+            System.out.println("Enter the difficulty level");
+            System.out.println("1:Easy\n2:Medium\n3:Hard");
+            int d = s.nextInt();
+            int turn;
+            if(d==1)
+                turn = 10;
+            else if(d==2)
+                turn = 5;
+            else
+                turn = 3;
+
             System.out.println("Guess number between 1 and 100:");
 
-            while (tries < 10) {
+            while (tries < turn) {
                 int g = s.nextInt();
                 tries++;
                 if (g == n) {
@@ -25,11 +36,11 @@ public class NUMBER_GAME {
                 } else {
                     System.out.println("Too high.");
                 }
-                int remaining = 10 - tries;
+                int remaining = turn - tries;
                 System.out.println("You have " + remaining + " tries remaining");
             }
 
-            if (tries == 10) {
+            if (tries == turn) {
                 System.out.println("Out of tries. It was: " + n);
             }
 
