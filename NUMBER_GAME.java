@@ -3,47 +3,40 @@ import java.util.Random;
 
 public class NUMBER_GAME {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Random random = new Random();
-        int maxAttempts = 7;
-        int min = 1, max = 100;
+        Scanner s = new Scanner(System.in);
+        Random r = new Random();
         int score = 0;
 
-        boolean playAgain = true;
-        while (playAgain) {
-            int numberToGuess = random.nextInt(max - min + 1) + min;
-            int attempts = 0;
-            boolean guessedCorrectly = false;
+        while (true) {
+            int n = r.nextInt(100) + 1;
+            int tries = 0;
 
-            System.out.println("Guess a number between " + min + " and " + max + ":");
+            System.out.println("Guess number between 1 and 100:");
 
-            while (attempts < maxAttempts) {
-                System.out.print("Attempt " + (attempts + 1) + ": ");
-                int guess = scanner.nextInt();
-                attempts++;
-
-                if (guess == numberToGuess) {
-                    System.out.println("Correct! You guessed the number in " + attempts + " attempts.");
+            while (tries < 7) {
+                int g = s.nextInt();
+                tries++;
+                if (g == n) {
+                    System.out.println("Correct in " + tries + " tries.");
                     score++;
-                    guessedCorrectly = true;
                     break;
-                } else if (guess < numberToGuess) {
+                } else if (g < n) {
                     System.out.println("Too low.");
                 } else {
                     System.out.println("Too high.");
                 }
             }
 
-            if (!guessedCorrectly) {
-                System.out.println("You've used all attempts. The number was " + numberToGuess + ".");
+            if (tries == 7) {
+                System.out.println("Out of tries. It was: " + n);
             }
 
-            System.out.print("Do you want to play again? (yes/no): ");
-            String response = scanner.next();
-            playAgain = response.equalsIgnoreCase("yes");
+            System.out.println("Play again? yes/no");
+            String again = s.next();
+            if (!again.equalsIgnoreCase("yes")) break;
         }
 
-        System.out.println("Game over. Your score: " + score);
-        scanner.close();
+        System.out.println("Final score: " + score);
+        s.close();
     }
 }
